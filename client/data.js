@@ -5,6 +5,11 @@ $(document).ready(function () {
     getAllDatas()
 })
 
+$(document).on('click', 'a[name="buttonLogout"]', function () {
+    Auth.deauthenticateUser()
+    window.location = '/login.html'
+})
+
 function getAllDatas() {
     $.ajax({
         url: `${SERVER_URL_DATA}`,
@@ -16,7 +21,6 @@ function getAllDatas() {
 }
 
 function showAllDatas(data) {
-    console.log(data)
     let rowData = []
     for (let i = 0; i < data.length; i++) {
         rowData.push(`
@@ -170,4 +174,36 @@ function updateViewAfterUpdate(data) {
     $('#formEdit').addClass('hidden')
     $("input[name='letter']").val("")
     $("input[name='frequency']").val("")
+}
+
+$("input[name='letterSearch']").keyup(function(){
+    let letter = $("input[name='letterSearch']").val()
+    searchByLetter(letter)
+})
+
+function searchByLetter(letter) {
+    $.ajax({
+        url: `${SERVER_URL_DATA}/letter/${letter}`,
+        method: "get",
+        contentType: 'application/x-www-form-urlencoded',
+        success: function (data) {
+            showAllDatas(data)
+        }
+    })
+}
+
+$("input[name='frequencySearch']").keyup(function(){
+    let freq = $("input[name='frequencySearch']").val()
+    searchByFreq(freq)
+})
+
+function searchByFreq(freq) {
+    $.ajax({
+        url: `${SERVER_URL_DATA}/frequency/${freq}`,
+        method: "get",
+        contentType: 'application/x-www-form-urlencoded',
+        success: function (data) {
+            showAllDatas(data)
+        }
+    })
 }

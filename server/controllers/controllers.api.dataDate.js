@@ -60,7 +60,7 @@ module.exports = {
     },
 
     getDataByLetter: function (req, res) {
-        DataDate.findOne({
+        DataDate.find({
             letter: req.params.letter
         }, function (err, data) {
             if (err) res.json(err)
@@ -69,7 +69,7 @@ module.exports = {
     },
 
     getDataByFrequency: function (req, res) {
-        DataDate.findOne({
+        DataDate.find({
             frequency: req.params.frequency
         }, function (err, data) {
             if (err) res.json(err)
