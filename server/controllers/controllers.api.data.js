@@ -48,7 +48,10 @@ module.exports = {
     },
 
     deleteAllData: function (req, res) {
-
+        Data.remove({}, function (err) {
+            if (err) res.json(err)
+            else res.json('all data deleted')
+        })
     },
 
     deleteDataById: function (req, res) {
