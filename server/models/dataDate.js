@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Data = new Schema({
+const DataDate = new Schema({
     letter: {
-        type: String,
+        type: Date,
         required: true
     },
     frequency: {
@@ -12,4 +12,4 @@ const Data = new Schema({
     }
 })
 
-module.exports = mongoose.model('Data', Data)
+module.exports = mongoose.model('DataDate', DataDate)
