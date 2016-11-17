@@ -22,6 +22,21 @@ live-server
 
 ## Models
 
+### user
+
+```
+const User = new Schema({
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true,
+    }
+})
+```
+
 ### data
 
 ```
@@ -29,7 +44,7 @@ const Data = new Schema({
     letter: {
         type: Date,
         required: true
-    }
+    },
     frequency: {
         type: String,
         required: true,
@@ -44,7 +59,7 @@ const dateDate = new Schema({
     letter: {
         type: Date,
         required: true
-    }
+    },
     frequency: {
         type: Number,
         required: true,
@@ -58,8 +73,8 @@ const dateDate = new Schema({
 
 | Endpoint              | HTTP      | Description               |
 | ----------            | -----     | ------------              |
-| api/user             | GET       | Get All User             |
-| api/user             | POST      | Create User              |
+| api/user/login             | POST       | Login User             |
+| api/user/register          | POST      | Create User              |
 
 ### API data
 
