@@ -51,7 +51,12 @@ module.exports = {
     },
 
     getDataById: function (req, res) {
-
+        Data.findOne({
+            _id: req.params.id
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
     getDataByLetter: function (req, res) {
