@@ -36,7 +36,10 @@ module.exports = {
     },
 
     getAllData: function (req, res) {
-
+        Data.find(function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
     getDataById: function (req, res) {

@@ -3,6 +3,7 @@ var router = express.Router();
 const dataController = require('../controllers/controllers.api.data')
 
 router.get('/seed', dataController.seedData)
+router.get('/', dataController.getAllData)
 router.delete('/', dataController.deleteAllData)
 
 module.exports = router;
