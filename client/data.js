@@ -179,6 +179,11 @@ function updateViewAfterUpdate(data) {
 $("input[name='letterSearch']").keyup(function(){
     let letter = $("input[name='letterSearch']").val()
     searchByLetter(letter)
+
+    if (!letter) {
+        getAllDatas()
+    }
+
 })
 
 function searchByLetter(letter) {
@@ -195,6 +200,11 @@ function searchByLetter(letter) {
 $("input[name='frequencySearch']").keyup(function(){
     let freq = $("input[name='frequencySearch']").val()
     searchByFreq(freq)
+
+    if (!freq) {
+        getAllDatas()
+    }
+
 })
 
 function searchByFreq(freq) {

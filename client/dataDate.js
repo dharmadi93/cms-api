@@ -23,9 +23,24 @@ function getAllDatas() {
 function showAllDatas(data) {
     let rowData = []
     for (let i = 0; i < data.length; i++) {
+        let date = new Date(data[i].letter)
+        let year = date.getFullYear()
+        let monthTemp = (date.getMonth()+1)
+        let dateTemp = date.getDate()
+
+        if (String(monthTemp).length === 1){
+            monthTemp = `0${monthTemp}`
+        }
+        if (String(dateTemp).length === 1){
+            dateTemp = `0${dateTemp}`
+        }
+
+        let formattedDate = `${year}-${monthTemp}-${dateTemp}`
+
+
         rowData.push(`
         <tr id="data${data[i]._id}">
-            <td>${data[i].letter}</td>
+            <td>${formattedDate}</td>
             <td>${data[i].frequency}</td>
             <td>
                 <a class="btn btn-success" name="updateData" data-id="${data[i]._id}">Update</a>
@@ -85,9 +100,24 @@ function createData(letter, frequency) {
 }
 
 function updateViewAfterInsert(data) {
+
+    let date = new Date(data.letter)
+    let year = date.getFullYear()
+    let monthTemp = (date.getMonth()+1)
+    let dateTemp = date.getDate()
+
+    if (String(monthTemp).length === 1){
+        monthTemp = `0${monthTemp}`
+    }
+    if (String(dateTemp).length === 1){
+        dateTemp = `0${dateTemp}`
+    }
+
+    let formattedDate = `${year}-${monthTemp}-${dateTemp}`
+
     let html = `
         <tr id="data${data._id}">
-            <td>${data.letter}</td>
+            <td>${formattedDate}</td>
             <td>${data.frequency}</td>
             <td>
                 <a class="btn btn-success" name="updateData" data-id="${data._id}">Update</a>
@@ -120,9 +150,22 @@ function getDataId(dataId) {
 }
 
 function getFormUpdate(data) {
+    let date = new Date(data.letter)
+    let year = date.getFullYear()
+    let monthTemp = (date.getMonth()+1)
+    let dateTemp = date.getDate()
+
+    if (String(monthTemp).length === 1){
+        monthTemp = `0${monthTemp}`
+    }
+    if (String(dateTemp).length === 1){
+        dateTemp = `0${dateTemp}`
+    }
+
+    let formattedDate = `${year}-${monthTemp}-${dateTemp}`
     let letter = `input[name=letterEdit]`
     let frequency = `input[name=frequencyEdit]`
-    $(letter).val(data.letter)
+    $(letter).val(formattedDate)
     $(frequency).val(data.frequency)
 
     let temp = $("input[name='id']").val()
@@ -160,9 +203,24 @@ function updateData() {
 }
 
 function updateViewAfterUpdate(data) {
+
+    let date = new Date(data.letter)
+    let year = date.getFullYear()
+    let monthTemp = (date.getMonth()+1)
+    let dateTemp = date.getDate()
+
+    if (String(monthTemp).length === 1){
+        monthTemp = `0${monthTemp}`
+    }
+    if (String(dateTemp).length === 1){
+        dateTemp = `0${dateTemp}`
+    }
+
+    let formattedDate = `${year}-${monthTemp}-${dateTemp}`
+
     let html = `
         <tr id="data${data._id}">
-            <td>${data.letter}</td>
+            <td>${formattedDate}</td>
             <td>${data.frequency}</td>
             <td>
                 <a class="btn btn-success" name="updateData" data-id="${data._id}">Update</a>
@@ -180,6 +238,11 @@ function updateViewAfterUpdate(data) {
 $("input[name='letterSearch']").change(function(){
     let letter = $("input[name='letterSearch']").val()
     searchByLetter(letter)
+
+    if (!letter) {
+        getAllDatas()
+    }
+
 })
 
 function searchByLetter(letter) {
@@ -196,6 +259,11 @@ function searchByLetter(letter) {
 $("input[name='frequencySearch']").keyup(function(){
     let freq = $("input[name='frequencySearch']").val()
     searchByFreq(freq)
+
+    if (!freq) {
+        getAllDatas()
+    }
+
 })
 
 function searchByFreq(freq) {
