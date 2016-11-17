@@ -8,14 +8,18 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const User = require('./models/user')
+const session = require('express-session')
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE)
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var data = require('./routes/data');
-var dataDate = require('./routes/dataDate');
+// var data = require('./routes/data');
+// var dataDate = require('./routes/dataDate');
 
 var app = express();
 
@@ -30,12 +34,29 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors())
+app.use(session({
+    secret: process.env.SECRET,
+    cookie: {
+        maxAge: 6000000
+    },
+    resave: false,
+    saveUninitialized: false
+}))
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()))
+
+
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 app.use('/', routes);
-app.use('/users', users);
-app.use('/data', data);
-app.use('/dataDate', dataDate);
+app.use('/api/user', users);
+// app.use('/api/data', data);
+// app.use('/api/dataDate', dataDate);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
