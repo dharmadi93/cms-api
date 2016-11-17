@@ -3,6 +3,14 @@ const jwt = require('jsonwebtoken')
 const passport = require('passport')
 
 module.exports = {
+
+    getAllUsers: function (req, res) {
+        User.find(function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
+    },
+
     registerUser: function (req, res) {
         User.register(new User({
             username: req.body.username,
