@@ -54,6 +54,13 @@ const dateDate = new Schema({
 
 ## Routing
 
+### API user
+
+| Endpoint              | HTTP      | Description               |
+| ----------            | -----     | ------------              |
+| api/user             | GET       | Get All User             |
+| api/user             | POST      | Create User              |
+
 ### API data
 
 | Endpoint              | HTTP      | Description               |
