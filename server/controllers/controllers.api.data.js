@@ -68,6 +68,15 @@ module.exports = {
         })
     },
 
+    getDataByFrequency: function (req, res) {
+        Data.findOne({
+            frequency: req.params.frequency
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
+    },
+
     deleteAllData: function (req, res) {
         Data.remove({}, function (err) {
             if (err) res.json(err)
