@@ -1,6 +1,6 @@
 const SERVER_URL_DATA = 'http://localhost:3000/api/data'
 const CONTENT_TYPE = 'application/x-www-form-urlencoded'
-
+//
 $(document).ready(function () {
     getAllDatas()
 })
