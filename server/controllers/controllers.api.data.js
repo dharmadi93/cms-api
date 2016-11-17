@@ -60,7 +60,12 @@ module.exports = {
     },
 
     getDataByLetter: function (req, res) {
-
+        Data.findOne({
+            letter: req.params.letter
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
     deleteAllData: function (req, res) {
