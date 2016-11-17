@@ -109,6 +109,7 @@ function getDataId(dataId) {
         method: "get",
         contentType: 'application/x-www-form-urlencoded',
         success: function (data) {
+            console.log(data)
             getFormUpdate(data)
         }
     })
