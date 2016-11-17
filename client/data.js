@@ -178,6 +178,7 @@ function updateViewAfterUpdate(data) {
 
 $("input[name='letterSearch']").keyup(function(){
     let letter = $("input[name='letterSearch']").val()
+    let freq = $("input[name='frequencySearch']").val()
     searchByLetter(letter)
 
     if (!letter) {
