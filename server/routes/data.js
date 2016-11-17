@@ -9,5 +9,6 @@ router.get('/letter/:letter', dataController.getDataByLetter)
 router.get('/frequency/:frequency', dataController.getDataByFrequency)
 router.post('/', dataController.createData)
 router.delete('/', dataController.deleteAllData)
+router.delete('/:id', dataController.deleteDataById)
 
 module.exports = router;
