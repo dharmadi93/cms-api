@@ -42,7 +42,7 @@ const User = new Schema({
 ```
 const Data = new Schema({
     letter: {
-        type: Date,
+        type: String,
         required: true
     },
     frequency: {

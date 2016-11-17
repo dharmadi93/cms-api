@@ -18,7 +18,7 @@ mongoose.connect(process.env.DATABASE)
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-// var data = require('./routes/data');
+var data = require('./routes/data');
 // var dataDate = require('./routes/dataDate');
 
 var app = express();
@@ -55,7 +55,7 @@ passport.deserializeUser(User.deserializeUser())
 
 app.use('/', routes);
 app.use('/api/user', users);
-// app.use('/api/data', data);
+app.use('/api/data', data);
 // app.use('/api/dataDate', dataDate);
 
 // catch 404 and forward to error handler
