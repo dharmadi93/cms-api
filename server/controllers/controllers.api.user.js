@@ -28,10 +28,10 @@ module.exports = {
         })
     },
 
-    loginUser: function (req, res) {
+    loginUser: function (req, res, next) {
         passport.authenticate('local', {
 
-        }, function (err, user, info) {
+        }, function (err, user) {
             console.log(user)
             if (err) return res.json(err)
             else if (!user) return res.status(400).json('no user found')
