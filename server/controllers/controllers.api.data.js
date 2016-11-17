@@ -32,7 +32,15 @@ module.exports = {
     },
 
     createData: function (req, res) {
+        const insertData = {
+            letter: req.body.letter,
+            frequency: req.body.frequency
+        }
 
+        Data.create(insertData, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
     getAllData: function (req, res) {
