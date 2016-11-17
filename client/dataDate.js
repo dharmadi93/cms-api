@@ -1,4 +1,4 @@
-const SERVER_URL_DATA = 'http://localhost:3000/api/data'
+const SERVER_URL_DATA = 'http://localhost:3000/api/dataDate'
 const CONTENT_TYPE = 'application/x-www-form-urlencoded'
 
 $(document).ready(function () {

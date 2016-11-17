@@ -10,5 +10,6 @@ router.get('/frequency/:frequency', dataController.getDataByFrequency)
 router.post('/', dataController.createData)
 router.delete('/', dataController.deleteAllData)
 router.delete('/:id', dataController.deleteDataById)
+router.put('/:id', dataController.updateData)
 
 module.exports = router;

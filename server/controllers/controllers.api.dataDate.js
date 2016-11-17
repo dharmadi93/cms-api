@@ -91,5 +91,20 @@ module.exports = {
             if (err) res.json(err)
             else res.json(data)
         })
+    },
+
+    updateData: function (req, res) {
+        DataDate.findOneAndUpdate({
+            _id: req.params.id
+        }, {
+            letter: req.body.letter,
+            frequency: req.body.frequency
+        }, {
+            new: true,
+            upsert: false
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     }
 }

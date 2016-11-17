@@ -86,7 +86,22 @@ module.exports = {
 
     deleteDataById: function (req, res) {
         Data.findOneAndRemove({
-            _id: req. params.id
+            _id: req.params.id
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
+    },
+
+    updateData: function (req, res) {
+        Data.findOneAndUpdate({
+            _id: req.params.id
+        }, {
+            letter: req.body.letter,
+            frequency: req.body.frequency
+        }, {
+            new: true,
+            upsert: false
         }, function (err, data) {
             if (err) res.json(err)
             else res.json(data)
